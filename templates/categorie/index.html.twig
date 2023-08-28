@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategorieController!
+{% endblock %}
+
+{% block body %}
+	<div class="d-flex justify-content-between m-3">
+		{% for item in categorie %}
+			<a class="btn btn-outline-light me-2 border-rounded text-dark fw-bold fs-5" href={{ path('categorie') }}>{{ item.nom }}</a>
+		{% endfor %}
+	</div>
+
+	<div class="d-flex justify-content-between m-3">
+		{% for item in produits %}
+			<div class="d-block">
+				<div>
+					<img src="{{ item.image }}" alt="Logo">
+				</div>
+				<div class="btn btn-white border-rounded text-white fw-bold fs-5">
+					{{ item.nom }}
+				</div>
+				<div>
+					{{ item.description }}
+				</div>
+				<div><a href={{path('panier_add', { id: item.id })}} class="btn btn-white">
+                {{ item.prix }} €
+</a>
+					
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}
