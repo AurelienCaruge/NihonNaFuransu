@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomepageController!
+{% endblock %}
+
+{% block body %}
+
+		<div class="d-flex justify-content-between m-3">
+			{% for item in categorie %}
+
+				
+					<a class="btn btn-outline-light me-2 border-rounded text-dark fw-bold fs-5" href={{ path('categorie') }}>{{ item.nom }}</a>
+			
+
+			{% endfor %}
+		</div>
+	<main class"container">
+		<div class="d-flex flex-column justify-content-center fst-italic fs-5 w-80 mt-3">
+			<p class="text-center">NihonNaFuransu, c'est un site de vente de produits japonais présent depuis plus de 1 an.
+			</p>
+			<p class="text-center">
+			notre équipe franco-japonaise est à votre disposition pour vous faire découvrir, en toute authenticité, les multiples trésors de la cuisine et de la culture japonaise.
+		</p>
+	</div>
+
+</main>
+<footer>
+<div class="container">
+  <footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+    </ul>
+    <p class="text-center text-body-secondary">© 2023 NNF, Inc</p>
+  </footer>
+</div>
+</footer>
+
+{% endblock %}
