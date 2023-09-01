@@ -111,14 +111,17 @@ class CartController extends AbstractController
     #[Route('/stripe', name: 'stripe')]
     public function index(
         UserRepository $userRepository,
-        PaiementRepository $paiement
+        PaiementRepository $paiement,
+        CategorieRepository $categorie
     ): Response
     {
         $userRepository->findAll();
         $paiement->findAll();
+        $categorie->findAll();
 
         return $this->render('stripe/paiement.html.twig', [
-            'stripe_key' => $_ENV["STRIPE_PUBLISHABLE_KEY"]
+            'stripe_key' => $_ENV["STRIPE_PUBLISHABLE_KEY"],
+            'categories' =>$categorie->findAll(),
         ]);
     }
 
