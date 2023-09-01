@@ -27,7 +27,7 @@ class ProduitsCrudController extends AbstractCrudController
             TextareaField::new('description'),
             AssociationField::new('categorie', 'Categorie')->autocomplete()
             ->setCrudController(CategorieCrudController::class),
-            ImageField::new('image')->setUploadDir('public/assets/images/produits')
+            ImageField::new('image')->setUploadDir('public/asset/images/produits')
         ];
     }
 }

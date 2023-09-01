@@ -36,23 +36,20 @@
 					</ul>
 
 					<div class="text-end d-flex">
-						{% if is_granted('PUBLIC_ACCESS') %}
-							<a type="button" class="btn btn-outline-light me-2" href={{ path('app_login') }}>Connexion</a>
-							<a type="button" class="btn btn-outline-light me-2" href={{ path('register') }}>Créer un compte</a>
-						{% endif %}
-						
-						{% if is_granted('ROLE_ADMIN') %}
-							<a href={{ path('admin') }} class="nav-link px-2 text-secondary">Dashboard</a>
-						{% endif %}
-						{% if is_granted('ROLE_USER') %}
 							<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
 								<input type="search" class="form-control form-control-dark text-bg-white" placeholder="Search..." aria-label="Search">
 							</form>
+						{% if is_granted('ROLE_ADMIN') %}
+						<a href={{ path('admin') }} class="nav-link px-2 text-secondary">Dashboard</a>
+						{% elseif is_granted('ROLE_USER') %}
 							<a type="button" class="btn btn-outline-light me-2" href={{ path('app_logout') }}>Déconnexion</a>
 							<a href={{path('panier')}} class="btn btn-success">
 								<i class="bi bi-bag"></i>
 								Votre panier
-							</a>
+							</a>	
+						{% else %}
+							<a type="button" class="btn btn-outline-light me-2" href={{ path('app_login') }}>Connexion</a>
+							<a type="button" class="btn btn-outline-light me-2" href={{ path('register') }}>Créer un compte</a>
 						{% endif %}
 
 					</div>
