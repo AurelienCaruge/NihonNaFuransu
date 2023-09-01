@@ -10,19 +10,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CategorieController extends AbstractController
 {
-    #[Route('/categorie', name: 'categorie')]
+    #[Route('/categorie/{id}', name: 'categorie')]
     public function index(
-        ProduitsRepository $produits,
         CategorieRepository $categorie,
+        $id
     ): Response
     {
-        return $this->render('categorie/index.html.twig', [
+        $cat = $categorie->find($id);
+        return $this->render('categorie/index.html.twig',[
             'controller_name' => 'CategorieController',
-            'categorie' => $categorie->findAll(),
-            'produits' => $produits->findBy(
-                [],
-                ['id' => 'ASC']
-                ),
+            'categories' =>$categorie->findAll(),
+            'categorie' => $cat,
+            'produits' => $cat->getProduits(),
         ]);
     }
 }

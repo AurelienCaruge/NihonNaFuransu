@@ -16,7 +16,7 @@ class HomepageController extends AbstractController
     {
         return $this->render('homepage/accueil.html.twig', [
             'controller_name' => 'HomepageController',
-            'categorie' => $categorie->findAll(),
+            'categories' => $categorie->findAll(),
         ]);
     }
 }
