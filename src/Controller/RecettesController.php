@@ -9,19 +9,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class HomepageController extends AbstractController
+class RecettesController extends AbstractController
 {
-    #[Route('/', name: 'accueil')]
+    #[Route('/recettes', name: 'recettes')]
     public function index(
         CategorieRepository $categorie,
     ): Response
     {
-        return $this->render('homepage/accueil.html.twig', [
-            'controller_name' => 'HomepageController',
+        return $this->render('recettes/recettes.html.twig', [
+            'controller_name' => 'RecettesController',
             'categories' => $categorie->findAll(),
         ]);
     }
-
     #[Route('/{id}', name: 'vue')]
     public function vue(
         ProduitsRepository $produits,

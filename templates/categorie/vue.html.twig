@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits
+{% endblock %}
+
+{% block body %}
+
+
+	<article class="d-flex flex-column justify-content-center m-3">
+		<header class="d-flex justify-content-center fw-bold fs-5">
+			{{ produits.nom }}
+		</header>
+		<div class="d-flex justify-content-center p-2">
+			<img src="{{ asset('asset/images/produits') }}/{{ produits.image }}" alt="{{ produits.nom }}">
+		</div>
+		<p>{{ produits.description }}</p>
+		<footer class="btn btn-white border-rounded text-white d-flex justify-content-center">
+			<a href={{path('panier_add', { id: produits.id } )}} class="btn btn-white border-black border-rounded">
+				{{ produits.prix|number_format(2, ',') }}€
+			</a>
+		</footer>
+	</article>
+
+{% endblock %}

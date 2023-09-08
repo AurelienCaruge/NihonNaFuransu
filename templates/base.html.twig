@@ -30,23 +30,20 @@
 						<li>
 							<a href={{ path('accueil') }} class="nav-link px-2 text-white">Home</a>
 						</li>
-						{# <li>
-							<a href={{ path('categorie') }} class="nav-link px-2 text-white">Produits</a>
-						</li> #}
 					</ul>
 
 					<div class="text-end d-flex">
-							<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-								<input type="search" class="form-control form-control-dark text-bg-white" placeholder="Search..." aria-label="Search">
-							</form>
+						<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+							<input type="search" class="form-control form-control-dark text-bg-white" placeholder="Search..." aria-label="Search">
+						</form>
 						{% if is_granted('ROLE_ADMIN') %}
-						<a href={{ path('admin') }} class="nav-link px-2 text-secondary">Dashboard</a>
+							<a href={{ path('admin') }} class="nav-link px-2 text-secondary">Dashboard</a>
 						{% elseif is_granted('ROLE_USER') %}
 							<a type="button" class="btn btn-outline-light me-2" href={{ path('app_logout') }}>Déconnexion</a>
 							<a href={{path('panier')}} class="btn btn-success">
 								<i class="bi bi-bag"></i>
 								Votre panier
-							</a>	
+							</a>
 						{% else %}
 							<a type="button" class="btn btn-outline-light me-2" href={{ path('app_login') }}>Connexion</a>
 							<a type="button" class="btn btn-outline-light me-2" href={{ path('register') }}>Créer un compte</a>
@@ -55,12 +52,31 @@
 					</div>
 				</div>
 			</div>
-        </header>
-		<div class="d-flex justify-content-between m-3">
+		</header>
+		<div class="d-flex justify-content-center m-3">
 			{% for item in categories %}
-				<a class="btn btn-outline-light me-2 border-rounded text-dark fw-bold fs-5" href={{ path('categorie', {'id' : item.id}) }}>{{ item.nom }}</a>
+				<a class="btn btn-outline-light me-2 border-rounded text-dark fw-bold fs-5" href={{ path('categorie', {'id' : item.id} ) }}>{{ item.nom }}</a>
 			{% endfor %}
+			<a class="btn btn-outline-light me-2 border-rounded text-dark fw-bold fs-5" href={{ path('recettes') }}>Recettes</a>
 		</div>
-			{% block body %}{% endblock %}
-	</body>
-</html>
+		<main class="container d-flex justify-content-center"> {% block body %}{% endblock %}
+			</main>
+			<footer class="py-3 my-4">
+				<ul class="nav justify-content-center border-bottom pb-3 mb-3">
+					<li class="nav-item">
+						<a href="#" class="nav-link px-2 text-body-secondary">Features</a>
+					</li>
+					<li class="nav-item">
+						<a href="#" class="nav-link px-2 text-body-secondary">Pricing</a>
+					</li>
+					<li class="nav-item">
+						<a href="#" class="nav-link px-2 text-body-secondary">FAQs</a>
+					</li>
+					<li class="nav-item">
+						<a href="#" class="nav-link px-2 text-body-secondary">About</a>
+					</li>
+				</ul>
+				<p class="text-center text-body-secondary">© 2023 NNF, Inc</p>
+			</footer>
+		</body>
+	</html>

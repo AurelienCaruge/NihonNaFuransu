@@ -126,25 +126,69 @@ class CartController extends AbstractController
     }
 
     #[Route('/stripe/payment', name: 'stripe_payment', methods: ['POST'])]
+
     public function createCharge(
+
         Request $request,
-        SessionInterface $session 
+
+        SessionInterface $session,
+
+        ProduitsRepository $productsRepository,
+
         ): Response
+
     {
-        
+
+        $panier = $session->get("panier", []);
+
+        $dataPanier = [];
+
+        $total = 0;
+
+        foreach($panier as $id => $quantite){
+
+            $product = $productsRepository->find($id);
+
+            $dataPanier[] = [
+
+                "produit" => $product,
+
+                "quantite" => $quantite
+
+            ];
+
+            $total += $product->getPrix() * $quantite;
+
+        }
+
+ 
 
         Stripe::setApiKey($_ENV["STRIPE_SECRET_KEY"]);
+
+ 
+
         Charge::create([
-            "amount" =>  $session->get("total") * 100,
+
+            "amount" =>  $total * 100,
+
             "currency" => "EUR",
+
             "source" => $request->request->get('stripeToken'),
+
         ]);
 
+ 
+
         $this->addFlash(
+
             'success',
+
             'Payment Successful!'
+
         );
+
         return $this->redirectToRoute('stripe', [], Response::HTTP_SEE_OTHER);
+
     }
 
 }

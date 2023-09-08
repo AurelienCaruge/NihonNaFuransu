@@ -6,24 +6,22 @@
 {% block body %}
 
 
-	<div class="d-flex justify-content-between m-3">
+	<div class="d-flex flex-wrap justify-content-center m-3" style="width:80%;">
 		{% for item in produits %}
-			<div class="grid">
+			<div class="card border p-2 m-2 col-lg-6 col-md-4 col-sm-2 col-xs-1" style="width: 20%; height: 310px;">
 				<article>
-					<header class="d-flex justify-content-center fw-bold fs-5 ">
+					<header class="d-flex justify-content-center fw-bold fs-5">
 						{{ item.nom }}
 					</header>
-					<div class="d-flex justify-content-center">
-						<img src="{{ asset('asset/images/produits') }}/{{ item.image }}" alt="{{ item.nom }}">
+					<div class="d-flex justify-content-center p-2">
+						<img src="{{ asset('asset/images/produits') }}/{{ item.image }}" alt="{{ item.nom }}" style="width: 50%; height: 50%;">
 					</div>
-					<p>{{ item.description }}</p>
 					<footer class="btn btn-white border-rounded text-white d-flex justify-content-center">
-						<a href={{path('panier_add', { id: item.id } )}} class="btn btn-white border-black border-rounded">
-							{{ item.prix }}€
-						</a>
+						{{ item.prix }}&euro; - <a href={{path('vue', { id: item.id } )}} class="btn btn-white border-black border-rounded">Détails</a>
 					</footer>
 				</article>
 			</div>
 		{% endfor %}
+		
 	</div>
 {% endblock %}
