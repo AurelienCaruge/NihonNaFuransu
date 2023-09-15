@@ -5,6 +5,7 @@
 
 {% block body %}
 
+<main class="container d-flex flex-column  align-center justify-content-center">
 
 	<div class="d-flex flex-wrap justify-content-center m-3" style="width:80%;">
 		{% for item in produits %}
@@ -22,6 +23,13 @@
 				</article>
 			</div>
 		{% endfor %}
-		
+
 	</div>
+
+	<div id"scrollUp" class="d-flex align-end justify-content-end"> 
+        <a class="btn btn-primary" id="top" href="#"><i class="fa-solid fa-arrow-up"></i></a> 
+	</div>	
+</main>
+		
+			
 {% endblock %}
