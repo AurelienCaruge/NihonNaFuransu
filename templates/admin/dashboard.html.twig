@@ -9,17 +9,27 @@
     <table class="datagrid">
         <thead>
             <tr>
-                <td>Some Column</td>
-                <td>Another Column</td>
+                <td>Produits vendus</td>
+                <td>Montant des ventes</td>
             </tr>
         </thead>
         <tbody>
-            {# {% for data in Produits %}
+        {{ render_chart(chart) }}
+        {# {% if addFlash() == true %} #}
+            {% for item in produits %}
                 <tr>
-                    <td>{{ data.nom }}</td>
-                    <td>{{ data.prix }}</td>
+                    <td>
+                    {{ item.nom }}  <img src="{{ asset('asset/images/produits') }}/{{ item.image }}" alt="{{ item.nom }}" style="width: 10%; height: 10%;">
+                    </td>
+                
+            {% endfor %}
+        {# {% endif %} #}
+        
+            {% for data in paiement %}
+                
+                    <td>{{ data.montant }}</td>
                 </tr>
-            {% endfor %} #}
+            {% endfor %}
         </tbody>
     </table>
 {% endblock %}

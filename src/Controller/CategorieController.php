@@ -7,6 +7,7 @@ use App\Repository\CategorieRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CategorieController extends AbstractController
@@ -40,5 +41,21 @@ class CategorieController extends AbstractController
                 ['id' => $id]
                 )
         ]);
+    }
+
+    private $adminUrlGenerator;
+
+    public function __construct(AdminUrlGenerator $adminUrlGenerator)
+    {
+        $this->adminUrlGenerator = $adminUrlGenerator;
+    }
+
+    public function someMethod()
+    {
+        $url = $this->adminUrlGenerator->setRoute('admin_business_stats_customer', [
+            'id' => $this->getUser(),
+        ])->generateUrl();
+
+        return $this->redirect($url);
     }
 }
