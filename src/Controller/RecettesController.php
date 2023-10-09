@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\RecetteRepository;
 use App\Repository\ProduitsRepository;
 use App\Repository\CategorieRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,11 +15,13 @@ class RecettesController extends AbstractController
     #[Route('/recettes', name: 'recettes')]
     public function index(
         CategorieRepository $categorie,
+        RecetteRepository $recette,
     ): Response
     {
         return $this->render('recettes/recettes.html.twig', [
             'controller_name' => 'RecettesController',
             'categories' => $categorie->findAll(),
+            'recettes' => $recette->findAll(),
         ]);
     }
     #[Route('/{id}', name: 'vue')]

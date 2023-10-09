@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use Stripe\Stripe;
+use App\Entity\Recette;
 use App\Entity\Produits;
 use App\Entity\Categorie;
 use Symfony\UX\Chartjs\Model\Chart;
@@ -117,6 +118,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Categorie', 'fas fa-list', Categorie::class);
         yield MenuItem::linkToCrud('Produits', 'fas fa-dollar', Produits::class);
+        yield MenuItem::linkToCrud('Recettes', 'fas fa-bowl-food', Recette::class);
         yield MenuItem::linkToRoute('Retour au site', 'fas fa-arrow-left', 'accueil');
     }
 }
